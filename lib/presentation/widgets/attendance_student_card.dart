@@ -5,10 +5,7 @@ import 'package:sky_attendance/domain/entities/attendance_record_entity.dart';
 class AttendanceStudentCard extends StatelessWidget {
   final StudentAttendanceRecord record;
 
-  const AttendanceStudentCard({
-    super.key,
-    required this.record,
-  });
+  const AttendanceStudentCard({super.key, required this.record});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +13,7 @@ class AttendanceStudentCard extends StatelessWidget {
 
     return Container(
       margin: const EdgeInsets.only(bottom: 10.0),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 14.0,
-        vertical: 12.0,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 12.0),
       decoration: BoxDecoration(
         color: isPresent ? Colors.white : AppColors.studentAbsentCardBg,
         borderRadius: BorderRadius.circular(10.0),

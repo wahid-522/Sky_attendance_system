@@ -21,13 +21,13 @@ class AppRoutes {
   static const String profile = '/profile';
 
   static Map<String, WidgetBuilder> get routes => {
-        login: (_) => const LoginView(),
-        home: (_) => const HomeView(),
-        subjects: (_) => const SubjectsView(),
-        attendance: (_) => const AttendanceView(),
-        attendanceConfirmation: (_) => const AttendanceConfirmationView(),
-        submittedAttendance: (_) => const SubmittedAttendanceView(),
-        attendanceHistory: (_) => const AttendanceHistoryView(),
-        profile: (_) => const ProfileView(),
-      };
+    login: (_) => const LoginView(),
+    home: (_) => const HomeView(),
+    subjects: (_) => const SubjectsView(),
+    attendance: (_) => const AttendanceView(),
+    attendanceConfirmation: (_) => const AttendanceConfirmationView(),
+    submittedAttendance: (_) => const SubmittedAttendanceView(),
+    attendanceHistory: (_) => const AttendanceHistoryView(),
+    profile: (_) => const ProfileView(),
+  };
 }

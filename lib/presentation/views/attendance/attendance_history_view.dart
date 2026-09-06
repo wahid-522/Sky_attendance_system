@@ -73,10 +73,8 @@ class _AttendanceHistoryViewState extends State<AttendanceHistoryView> {
                         children: [
                           // Teacher Avatar
                           InkWell(
-                            onTap: () => Navigator.pushNamed(
-                              context,
-                              AppRoutes.profile,
-                            ),
+                            onTap: () =>
+                                Navigator.pushNamed(context, AppRoutes.profile),
                             borderRadius: BorderRadius.circular(16.0),
                             child: Container(
                               width: 32.0,
@@ -88,7 +86,10 @@ class _AttendanceHistoryViewState extends State<AttendanceHistoryView> {
                                   width: 1.2,
                                 ),
                                 gradient: const LinearGradient(
-                                  colors: [Color(0xFFD6A265), Color(0xFF8B5E3C)],
+                                  colors: [
+                                    Color(0xFFD6A265),
+                                    Color(0xFF8B5E3C),
+                                  ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
                                 ),
@@ -222,15 +223,14 @@ class _AttendanceHistoryViewState extends State<AttendanceHistoryView> {
                                         ),
                                         InkWell(
                                           onTap: () {
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
+                                            ScaffoldMessenger.of(
+                                              context,
+                                            ).showSnackBar(
                                               const SnackBar(
-                                                content:
-                                                    Text('Filter clicked'),
+                                                content: Text('Filter clicked'),
                                                 backgroundColor:
                                                     AppColors.buttonNavy,
-                                                duration:
-                                                    Duration(seconds: 1),
+                                                duration: Duration(seconds: 1),
                                               ),
                                             );
                                           },
@@ -261,139 +261,143 @@ class _AttendanceHistoryViewState extends State<AttendanceHistoryView> {
                                   ),
 
                                   // Submission Rows
-                                  ...List.generate(
-                                    _viewModel.historyItems.length,
-                                    (index) {
-                                      final item =
-                                          _viewModel.historyItems[index];
-                                      return Column(
-                                        children: [
-                                          InkWell(
-                                            onTap: () {
-                                              Navigator.pushNamed(
-                                                context,
-                                                AppRoutes.submittedAttendance,
-                                              );
-                                            },
-                                            child: Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                horizontal: 16.0,
-                                                vertical: 14.0,
-                                              ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  // Date & Time Column
-                                                  Expanded(
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text(
-                                                          item.dateTitle,
-                                                          style: const TextStyle(
-                                                            fontSize: 15.5,
-                                                            fontWeight:
-                                                                FontWeight.w700,
-                                                            color:
-                                                                Color(0xFF0F172A),
-                                                          ),
-                                                        ),
-                                                        const SizedBox(height: 3.0),
-                                                        Text(
-                                                          item.timeAndType,
-                                                          style: const TextStyle(
-                                                            fontSize: 12.0,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            color:
-                                                                Color(0xFF64748B),
-                                                            height: 1.25,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  const SizedBox(width: 8.0),
-
-                                                  // Status Badge & Chevron
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
+                                  ...List.generate(_viewModel.historyItems.length, (
+                                    index,
+                                  ) {
+                                    final item = _viewModel.historyItems[index];
+                                    return Column(
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.pushNamed(
+                                              context,
+                                              AppRoutes.submittedAttendance,
+                                            );
+                                          },
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 16.0,
+                                              vertical: 14.0,
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                // Date & Time Column
+                                                Expanded(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
-                                                      Container(
-                                                        padding: const EdgeInsets
-                                                            .symmetric(
-                                                          horizontal: 8.0,
-                                                          vertical: 3.5,
-                                                        ),
-                                                        decoration: BoxDecoration(
-                                                          color: AppColors
-                                                              .historySubmittedBadgeBg,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(4.0),
-                                                          border: Border.all(
-                                                            color: AppColors
-                                                                .historySubmittedBadgeBorder,
-                                                            width: 1.0,
+                                                      Text(
+                                                        item.dateTitle,
+                                                        style: const TextStyle(
+                                                          fontSize: 15.5,
+                                                          fontWeight:
+                                                              FontWeight.w700,
+                                                          color: Color(
+                                                            0xFF0F172A,
                                                           ),
-                                                        ),
-                                                        child: const Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          children: [
-                                                            Icon(
-                                                              Icons
-                                                                  .check_circle_outline_rounded,
-                                                              size: 13.0,
-                                                              color: AppColors
-                                                                  .historySubmittedBadgeText,
-                                                            ),
-                                                            SizedBox(width: 4.0),
-                                                            Text(
-                                                              AppStrings
-                                                                  .submittedStatusLabel,
-                                                              style: TextStyle(
-                                                                fontSize: 11.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                color: AppColors
-                                                                    .historySubmittedBadgeText,
-                                                              ),
-                                                            ),
-                                                          ],
                                                         ),
                                                       ),
-                                                      const SizedBox(width: 10.0),
-                                                      const Icon(
-                                                        Icons
-                                                            .chevron_right_rounded,
-                                                        size: 18.0,
-                                                        color: Color(0xFF94A3B8),
+                                                      const SizedBox(
+                                                        height: 3.0,
+                                                      ),
+                                                      Text(
+                                                        item.timeAndType,
+                                                        style: const TextStyle(
+                                                          fontSize: 12.0,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          color: Color(
+                                                            0xFF64748B,
+                                                          ),
+                                                          height: 1.25,
+                                                        ),
                                                       ),
                                                     ],
                                                   ),
-                                                ],
-                                              ),
+                                                ),
+                                                const SizedBox(width: 8.0),
+
+                                                // Status Badge & Chevron
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    Container(
+                                                      padding:
+                                                          const EdgeInsets.symmetric(
+                                                            horizontal: 8.0,
+                                                            vertical: 3.5,
+                                                          ),
+                                                      decoration: BoxDecoration(
+                                                        color: AppColors
+                                                            .historySubmittedBadgeBg,
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                              4.0,
+                                                            ),
+                                                        border: Border.all(
+                                                          color: AppColors
+                                                              .historySubmittedBadgeBorder,
+                                                          width: 1.0,
+                                                        ),
+                                                      ),
+                                                      child: const Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: [
+                                                          Icon(
+                                                            Icons
+                                                                .check_circle_outline_rounded,
+                                                            size: 13.0,
+                                                            color: AppColors
+                                                                .historySubmittedBadgeText,
+                                                          ),
+                                                          SizedBox(width: 4.0),
+                                                          Text(
+                                                            AppStrings
+                                                                .submittedStatusLabel,
+                                                            style: TextStyle(
+                                                              fontSize: 11.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              color: AppColors
+                                                                  .historySubmittedBadgeText,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    const SizedBox(width: 10.0),
+                                                    const Icon(
+                                                      Icons
+                                                          .chevron_right_rounded,
+                                                      size: 18.0,
+                                                      color: Color(0xFF94A3B8),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
                                             ),
                                           ),
-                                          if (index !=
-                                              _viewModel.historyItems.length -
-                                                  1)
-                                            const Divider(
-                                              height: 1.0,
-                                              thickness: 1.0,
-                                              color: Color(0xFFE5E7EB),
-                                            ),
-                                        ],
-                                      );
-                                    },
-                                  ),
+                                        ),
+                                        if (index !=
+                                            _viewModel.historyItems.length - 1)
+                                          const Divider(
+                                            height: 1.0,
+                                            thickness: 1.0,
+                                            color: Color(0xFFE5E7EB),
+                                          ),
+                                      ],
+                                    );
+                                  }),
                                 ],
                               ),
                             ),
@@ -405,11 +409,8 @@ class _AttendanceHistoryViewState extends State<AttendanceHistoryView> {
                     // Bottom Navigation Bar
                     HomeBottomNavBar(
                       currentIndex: 1,
-                      onTap: (index) => HomeBottomNavBar.navigateToTab(
-                        context,
-                        1,
-                        index,
-                      ),
+                      onTap: (index) =>
+                          HomeBottomNavBar.navigateToTab(context, 1, index),
                     ),
                   ],
                 );

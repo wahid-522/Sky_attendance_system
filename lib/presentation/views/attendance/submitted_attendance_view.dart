@@ -38,10 +38,7 @@ class _SubmittedAttendanceViewState extends State<SubmittedAttendanceView> {
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_rounded,
-            color: Color(0xFF334155),
-          ),
+          icon: const Icon(Icons.arrow_back_rounded, color: Color(0xFF334155)),
           onPressed: () {
             if (Navigator.canPop(context)) {
               Navigator.pop(context);
@@ -91,10 +88,8 @@ class _SubmittedAttendanceViewState extends State<SubmittedAttendanceView> {
                         children: [
                           // Teacher Avatar
                           InkWell(
-                            onTap: () => Navigator.pushNamed(
-                              context,
-                              AppRoutes.profile,
-                            ),
+                            onTap: () =>
+                                Navigator.pushNamed(context, AppRoutes.profile),
                             borderRadius: BorderRadius.circular(16.0),
                             child: Container(
                               width: 32.0,
@@ -106,7 +101,10 @@ class _SubmittedAttendanceViewState extends State<SubmittedAttendanceView> {
                                   width: 1.2,
                                 ),
                                 gradient: const LinearGradient(
-                                  colors: [Color(0xFF334155), Color(0xFF1E293B)],
+                                  colors: [
+                                    Color(0xFF334155),
+                                    Color(0xFF1E293B),
+                                  ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
                                 ),
@@ -284,8 +282,7 @@ class _SubmittedAttendanceViewState extends State<SubmittedAttendanceView> {
 
                             // Student Cards List
                             ..._viewModel.students.map(
-                              (record) =>
-                                  AttendanceStudentCard(record: record),
+                              (record) => AttendanceStudentCard(record: record),
                             ),
                           ],
                         ),
@@ -295,11 +292,8 @@ class _SubmittedAttendanceViewState extends State<SubmittedAttendanceView> {
                     // Bottom Navigation Bar
                     HomeBottomNavBar(
                       currentIndex: 2,
-                      onTap: (index) => HomeBottomNavBar.navigateToTab(
-                        context,
-                        2,
-                        index,
-                      ),
+                      onTap: (index) =>
+                          HomeBottomNavBar.navigateToTab(context, 2, index),
                     ),
                   ],
                 );
@@ -320,10 +314,7 @@ class _SubmittedAttendanceViewState extends State<SubmittedAttendanceView> {
     Color? borderColor,
   }) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 14.0,
-        vertical: 14.0,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 14.0),
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(10.0),

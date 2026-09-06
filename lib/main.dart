@@ -8,19 +8,14 @@ void main() {
 class MyApp extends StatelessWidget {
   final String? initialRoute;
 
-  const MyApp({
-    super.key,
-    this.initialRoute,
-  });
+  const MyApp({super.key, this.initialRoute});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Sky Academy Attendance',
-      theme: ThemeData(
-        useMaterial3: true,
-      ),
+      theme: ThemeData(useMaterial3: true),
       initialRoute: initialRoute ?? AppRoutes.login,
       routes: AppRoutes.routes,
     );

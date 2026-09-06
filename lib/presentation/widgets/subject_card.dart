@@ -7,11 +7,7 @@ class SubjectCard extends StatelessWidget {
   final SubjectEntity subject;
   final VoidCallback? onTap;
 
-  const SubjectCard({
-    super.key,
-    required this.subject,
-    this.onTap,
-  });
+  const SubjectCard({super.key, required this.subject, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +16,7 @@ class SubjectCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(12.0),
-        border: Border.all(
-          color: AppColors.cardBorder,
-          width: 1.0,
-        ),
+        border: Border.all(color: AppColors.cardBorder, width: 1.0),
         boxShadow: const [
           BoxShadow(
             color: Color(0x05000000),
@@ -90,10 +83,7 @@ class SubjectCard extends StatelessWidget {
                 const SizedBox(height: 14.0),
 
                 // Subtle Inner Divider
-                Container(
-                  height: 1.0,
-                  color: const Color(0xFFF1F5F9),
-                ),
+                Container(height: 1.0, color: const Color(0xFFF1F5F9)),
                 const SizedBox(height: 12.0),
 
                 // Bottom Row: Enrolled Stats & Action Arrow

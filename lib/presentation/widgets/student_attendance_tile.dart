@@ -21,10 +21,7 @@ class StudentAttendanceTile extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 14.0,
-            vertical: 11.0,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 11.0),
           child: Row(
             children: [
               // Avatar Placeholder Box
@@ -82,17 +79,13 @@ class StudentAttendanceTile extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4.0),
                     border: isPresent
                         ? null
-                        : Border.all(
-                            color: AppColors.absentBorder,
-                            width: 1.0,
-                          ),
+                        : Border.all(color: AppColors.absentBorder, width: 1.0),
                   ),
                   child: Text(
                     'Present',
                     style: TextStyle(
                       fontSize: 11.5,
-                      fontWeight:
-                          isPresent ? FontWeight.w600 : FontWeight.w500,
+                      fontWeight: isPresent ? FontWeight.w600 : FontWeight.w500,
                       color: isPresent ? Colors.white : AppColors.absentText,
                     ),
                   ),
@@ -114,17 +107,15 @@ class StudentAttendanceTile extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4.0),
                     border: !isPresent
                         ? null
-                        : Border.all(
-                            color: AppColors.absentBorder,
-                            width: 1.0,
-                          ),
+                        : Border.all(color: AppColors.absentBorder, width: 1.0),
                   ),
                   child: Text(
                     'Absent',
                     style: TextStyle(
                       fontSize: 11.5,
-                      fontWeight:
-                          !isPresent ? FontWeight.w600 : FontWeight.w500,
+                      fontWeight: !isPresent
+                          ? FontWeight.w600
+                          : FontWeight.w500,
                       color: !isPresent ? Colors.white : AppColors.absentText,
                     ),
                   ),
@@ -134,11 +125,7 @@ class StudentAttendanceTile extends StatelessWidget {
           ),
         ),
         if (showDivider)
-          const Divider(
-            height: 1.0,
-            thickness: 1.0,
-            color: Color(0xFFF1F5F9),
-          ),
+          const Divider(height: 1.0, thickness: 1.0, color: Color(0xFFF1F5F9)),
       ],
     );
   }

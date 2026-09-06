@@ -74,10 +74,8 @@ class _HomeViewState extends State<HomeView> {
                         children: [
                           // Teacher Avatar
                           InkWell(
-                            onTap: () => Navigator.pushNamed(
-                              context,
-                              AppRoutes.profile,
-                            ),
+                            onTap: () =>
+                                Navigator.pushNamed(context, AppRoutes.profile),
                             borderRadius: BorderRadius.circular(16.0),
                             child: Container(
                               width: 32.0,
@@ -89,7 +87,10 @@ class _HomeViewState extends State<HomeView> {
                                   width: 1.2,
                                 ),
                                 gradient: const LinearGradient(
-                                  colors: [Color(0xFFE2D4C9), Color(0xFFC7B198)],
+                                  colors: [
+                                    Color(0xFFE2D4C9),
+                                    Color(0xFFC7B198),
+                                  ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
                                 ),
@@ -224,11 +225,8 @@ class _HomeViewState extends State<HomeView> {
                     // Bottom Navigation Bar
                     HomeBottomNavBar(
                       currentIndex: 0,
-                      onTap: (index) => HomeBottomNavBar.navigateToTab(
-                        context,
-                        0,
-                        index,
-                      ),
+                      onTap: (index) =>
+                          HomeBottomNavBar.navigateToTab(context, 0, index),
                     ),
                   ],
                 );

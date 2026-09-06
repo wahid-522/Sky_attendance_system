@@ -74,10 +74,8 @@ class _SubjectsViewState extends State<SubjectsView> {
                         children: [
                           // Teacher Avatar in Suit
                           InkWell(
-                            onTap: () => Navigator.pushNamed(
-                              context,
-                              AppRoutes.profile,
-                            ),
+                            onTap: () =>
+                                Navigator.pushNamed(context, AppRoutes.profile),
                             borderRadius: BorderRadius.circular(16.0),
                             child: Container(
                               width: 32.0,
@@ -89,7 +87,10 @@ class _SubjectsViewState extends State<SubjectsView> {
                                   width: 1.2,
                                 ),
                                 gradient: const LinearGradient(
-                                  colors: [Color(0xFF334155), Color(0xFF1E293B)],
+                                  colors: [
+                                    Color(0xFF334155),
+                                    Color(0xFF1E293B),
+                                  ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
                                 ),
@@ -223,11 +224,8 @@ class _SubjectsViewState extends State<SubjectsView> {
                     // Bottom Navigation Bar
                     HomeBottomNavBar(
                       currentIndex: 0,
-                      onTap: (index) => HomeBottomNavBar.navigateToTab(
-                        context,
-                        0,
-                        index,
-                      ),
+                      onTap: (index) =>
+                          HomeBottomNavBar.navigateToTab(context, 0, index),
                     ),
                   ],
                 );

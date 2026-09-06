@@ -47,11 +47,7 @@ class AppTextField extends StatelessWidget {
           ),
           prefixIcon: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: Icon(
-              prefixIcon,
-              size: 18.0,
-              color: AppColors.inputIcon,
-            ),
+            child: Icon(prefixIcon, size: 18.0, color: AppColors.inputIcon),
           ),
           prefixIconConstraints: const BoxConstraints(
             minWidth: 42.0,

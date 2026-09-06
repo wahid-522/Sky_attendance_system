@@ -53,19 +53,11 @@ class _AttendanceConfirmationViewState
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 380.0),
               child: Container(
-                padding: const EdgeInsets.fromLTRB(
-                  24.0,
-                  34.0,
-                  24.0,
-                  28.0,
-                ),
+                padding: const EdgeInsets.fromLTRB(24.0, 34.0, 24.0, 28.0),
                 decoration: BoxDecoration(
                   color: AppColors.cardBackground,
                   borderRadius: BorderRadius.circular(16.0),
-                  border: Border.all(
-                    color: AppColors.cardBorder,
-                    width: 1.0,
-                  ),
+                  border: Border.all(color: AppColors.cardBorder, width: 1.0),
                   boxShadow: const [
                     BoxShadow(
                       color: AppColors.cardShadow,
@@ -185,9 +177,7 @@ class _AttendanceConfirmationViewState
                         // Present Box
                         Expanded(
                           child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 14.0,
-                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 14.0),
                             decoration: BoxDecoration(
                               color: AppColors.statPresentBg,
                               borderRadius: BorderRadius.circular(8.0),
@@ -221,9 +211,7 @@ class _AttendanceConfirmationViewState
                         // Absent Box
                         Expanded(
                           child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 14.0,
-                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 14.0),
                             decoration: BoxDecoration(
                               color: AppColors.statAbsentBg,
                               borderRadius: BorderRadius.circular(8.0),
@@ -281,10 +269,7 @@ class _AttendanceConfirmationViewState
                           mainAxisAlignment: MainAxisAlignment.center,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(
-                              Icons.arrow_back_rounded,
-                              size: 16.0,
-                            ),
+                            Icon(Icons.arrow_back_rounded, size: 16.0),
                             SizedBox(width: 8.0),
                             Flexible(
                               child: Text(

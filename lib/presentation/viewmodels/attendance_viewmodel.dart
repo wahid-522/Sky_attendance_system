@@ -17,19 +17,16 @@ class AttendanceViewModel extends ChangeNotifier {
   }
 
   void _initStudents() {
-    _students = List.generate(
-      40,
-      (index) {
-        final num = index + 1;
-        final roll = '10A-${num.toString().padLeft(3, '0')}';
-        return StudentEntity(
-          id: 'std_$num',
-          name: 'Student $num',
-          rollNumber: roll,
-          status: AttendanceStatus.present,
-        );
-      },
-    );
+    _students = List.generate(40, (index) {
+      final num = index + 1;
+      final roll = '10A-${num.toString().padLeft(3, '0')}';
+      return StudentEntity(
+        id: 'std_$num',
+        name: 'Student $num',
+        rollNumber: roll,
+        status: AttendanceStatus.present,
+      );
+    });
   }
 
   void markAllPresent() {
@@ -61,9 +58,7 @@ class AttendanceViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void submitAttendance({
-    required VoidCallback onSuccess,
-  }) {
+  void submitAttendance({required VoidCallback onSuccess}) {
     _isSubmitting = true;
     notifyListeners();
 

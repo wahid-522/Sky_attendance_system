@@ -12,16 +12,20 @@ import 'package:sky_attendance/presentation/views/profile/profile_view.dart';
 import 'package:sky_attendance/presentation/views/subjects/subjects_view.dart';
 
 void main() {
-  testWidgets('App root smoke test (Login screen default)',
-      (WidgetTester tester) async {
+  testWidgets('App root smoke test (Login screen default)', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpWidget(const MyApp());
     expect(find.text('Teacher Portal Login'), findsOneWidget);
     expect(find.text('Login to Dashboard'), findsOneWidget);
   });
 
-  testWidgets('App root with initialRoute (Attendance History)',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp(initialRoute: AppRoutes.attendanceHistory));
+  testWidgets('App root with initialRoute (Attendance History)', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(
+      const MyApp(initialRoute: AppRoutes.attendanceHistory),
+    );
     expect(find.text('Attendance History'), findsOneWidget);
     expect(find.text('Advanced Physics 401'), findsOneWidget);
   });
@@ -51,38 +55,42 @@ void main() {
     expect(find.text('Submit Attendance'), findsOneWidget);
   });
 
-  testWidgets('Attendance Confirmation screen renders cleanly',
-      (WidgetTester tester) async {
-    await tester
-        .pumpWidget(const MaterialApp(home: AttendanceConfirmationView()));
+  testWidgets('Attendance Confirmation screen renders cleanly', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(
+      const MaterialApp(home: AttendanceConfirmationView()),
+    );
     expect(find.text('Attendance Confirmation'), findsOneWidget);
     expect(find.text('Return to Subject List'), findsOneWidget);
   });
 
-  testWidgets('Attendance History screen renders cleanly',
-      (WidgetTester tester) async {
+  testWidgets('Attendance History screen renders cleanly', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpWidget(const MaterialApp(home: AttendanceHistoryView()));
     expect(find.text('RECENT SUBMISSIONS'), findsOneWidget);
     expect(find.text('Mon, Oct 23'), findsOneWidget);
   });
 
-  testWidgets('Submitted Attendance screen renders cleanly',
-      (WidgetTester tester) async {
+  testWidgets('Submitted Attendance screen renders cleanly', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpWidget(const MaterialApp(home: SubmittedAttendanceView()));
     expect(find.text('Submitted Attendance\n- Aug 30, 2026'), findsOneWidget);
     expect(find.text('PREVIOUSLY SUBMITTED'), findsOneWidget);
   });
 
-  testWidgets('Profile screen renders cleanly',
-      (WidgetTester tester) async {
+  testWidgets('Profile screen renders cleanly', (WidgetTester tester) async {
     await tester.pumpWidget(const MaterialApp(home: ProfileView()));
     expect(find.text('Teacher Profile'), findsOneWidget);
     expect(find.text('Prof. Sarah Jenkins'), findsOneWidget);
     expect(find.text('Logout from Academy'), findsOneWidget);
   });
 
-  testWidgets('Full inter-screen navigation flow works smoothly',
-      (WidgetTester tester) async {
+  testWidgets('Full inter-screen navigation flow works smoothly', (
+    WidgetTester tester,
+  ) async {
     tester.view.physicalSize = const Size(1080, 2400);
     tester.view.devicePixelRatio = 2.0;
     addTearDown(() => tester.view.resetPhysicalSize());

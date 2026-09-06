@@ -378,10 +378,7 @@ class _ProfileViewState extends State<ProfileView> {
                                 (route) => false,
                               );
                             },
-                            icon: const Icon(
-                              Icons.logout_rounded,
-                              size: 18.0,
-                            ),
+                            icon: const Icon(Icons.logout_rounded, size: 18.0),
                             label: const Text(
                               'Logout from Academy',
                               style: TextStyle(
@@ -405,9 +402,7 @@ class _ProfileViewState extends State<ProfileView> {
                 ),
 
                 // Bottom Navigation Bar
-                const HomeBottomNavBar(
-                  currentIndex: 3,
-                ),
+                const HomeBottomNavBar(currentIndex: 3),
               ],
             ),
           ),
@@ -419,11 +414,7 @@ class _ProfileViewState extends State<ProfileView> {
   Widget _buildInfoRow(IconData icon, String label, String value) {
     return Row(
       children: [
-        Icon(
-          icon,
-          size: 16.0,
-          color: const Color(0xFF64748B),
-        ),
+        Icon(icon, size: 16.0, color: const Color(0xFF64748B)),
         const SizedBox(width: 8.0),
         Text(
           label,

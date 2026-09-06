@@ -6,11 +6,7 @@ class ClassCard extends StatelessWidget {
   final ClassEntity classItem;
   final VoidCallback? onTap;
 
-  const ClassCard({
-    super.key,
-    required this.classItem,
-    this.onTap,
-  });
+  const ClassCard({super.key, required this.classItem, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +15,7 @@ class ClassCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(12.0),
-        border: Border.all(
-          color: AppColors.cardBorder,
-          width: 1.0,
-        ),
+        border: Border.all(color: AppColors.cardBorder, width: 1.0),
         boxShadow: const [
           BoxShadow(
             color: Color(0x05000000),

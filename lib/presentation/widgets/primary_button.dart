@@ -25,8 +25,7 @@ class PrimaryButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.buttonNavy,
           foregroundColor: AppColors.buttonText,
-          disabledBackgroundColor:
-              AppColors.buttonNavy.withValues(alpha: 0.6),
+          disabledBackgroundColor: AppColors.buttonNavy.withValues(alpha: 0.6),
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(6.0),
@@ -57,11 +56,7 @@ class PrimaryButton extends StatelessWidget {
                   ),
                   if (trailingIcon != null) ...[
                     const SizedBox(width: 8.0),
-                    Icon(
-                      trailingIcon,
-                      size: 16.0,
-                      color: AppColors.buttonText,
-                    ),
+                    Icon(trailingIcon, size: 16.0, color: AppColors.buttonText),
                   ],
                 ],
               ),

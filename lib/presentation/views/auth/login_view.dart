@@ -92,12 +92,7 @@ class _LoginViewState extends State<LoginView> {
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 380.0),
                   child: Container(
-                    padding: const EdgeInsets.fromLTRB(
-                      28.0,
-                      34.0,
-                      28.0,
-                      30.0,
-                    ),
+                    padding: const EdgeInsets.fromLTRB(28.0, 34.0, 28.0, 30.0),
                     decoration: BoxDecoration(
                       color: AppColors.cardBackground,
                       borderRadius: BorderRadius.circular(16.0),

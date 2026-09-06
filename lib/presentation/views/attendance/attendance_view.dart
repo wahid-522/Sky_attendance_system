@@ -32,10 +32,7 @@ class _AttendanceViewState extends State<AttendanceView> {
     _viewModel.submitAttendance(
       onSuccess: () {
         if (!mounted) return;
-        Navigator.pushNamed(
-          context,
-          AppRoutes.attendanceConfirmation,
-        );
+        Navigator.pushNamed(context, AppRoutes.attendanceConfirmation);
       },
     );
   }
@@ -86,10 +83,8 @@ class _AttendanceViewState extends State<AttendanceView> {
                         children: [
                           // Teacher Avatar
                           InkWell(
-                            onTap: () => Navigator.pushNamed(
-                              context,
-                              AppRoutes.profile,
-                            ),
+                            onTap: () =>
+                                Navigator.pushNamed(context, AppRoutes.profile),
                             borderRadius: BorderRadius.circular(16.0),
                             child: Container(
                               width: 32.0,
@@ -101,7 +96,10 @@ class _AttendanceViewState extends State<AttendanceView> {
                                   width: 1.2,
                                 ),
                                 gradient: const LinearGradient(
-                                  colors: [Color(0xFFD6A265), Color(0xFF8B5E3C)],
+                                  colors: [
+                                    Color(0xFFD6A265),
+                                    Color(0xFF8B5E3C),
+                                  ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
                                 ),
@@ -243,8 +241,9 @@ class _AttendanceViewState extends State<AttendanceView> {
                                         foregroundColor: Colors.white,
                                         elevation: 0,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(6.0),
+                                          borderRadius: BorderRadius.circular(
+                                            6.0,
+                                          ),
                                         ),
                                         padding: const EdgeInsets.symmetric(
                                           horizontal: 8.0,
@@ -280,8 +279,9 @@ class _AttendanceViewState extends State<AttendanceView> {
                                           width: 1.0,
                                         ),
                                         shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(6.0),
+                                          borderRadius: BorderRadius.circular(
+                                            6.0,
+                                          ),
                                         ),
                                         padding: const EdgeInsets.symmetric(
                                           horizontal: 8.0,
@@ -329,7 +329,8 @@ class _AttendanceViewState extends State<AttendanceView> {
                                     final student = _viewModel.students[index];
                                     return StudentAttendanceTile(
                                       student: student,
-                                      showDivider: index !=
+                                      showDivider:
+                                          index !=
                                           _viewModel.students.length - 1,
                                       onStatusChanged: (status) {
                                         _viewModel.toggleStudentStatus(
@@ -368,18 +369,15 @@ class _AttendanceViewState extends State<AttendanceView> {
                                           strokeWidth: 2.0,
                                           valueColor:
                                               AlwaysStoppedAnimation<Color>(
-                                            Colors.white,
-                                          ),
+                                                Colors.white,
+                                              ),
                                         ),
                                       )
                                     : const Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          Icon(
-                                            Icons.send_rounded,
-                                            size: 16.0,
-                                          ),
+                                          Icon(Icons.send_rounded, size: 16.0),
                                           SizedBox(width: 8.0),
                                           Text(
                                             AppStrings.submitAttendance,
@@ -401,11 +399,8 @@ class _AttendanceViewState extends State<AttendanceView> {
                     // Bottom Navigation Bar
                     HomeBottomNavBar(
                       currentIndex: 0,
-                      onTap: (index) => HomeBottomNavBar.navigateToTab(
-                        context,
-                        0,
-                        index,
-                      ),
+                      onTap: (index) =>
+                          HomeBottomNavBar.navigateToTab(context, 0, index),
                     ),
                   ],
                 );

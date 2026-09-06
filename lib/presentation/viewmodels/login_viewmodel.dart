@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 class LoginViewModel extends ChangeNotifier {
-  final TextEditingController emailController =
-      TextEditingController(text: 'instructor@skyacademy.edu');
-  final TextEditingController passwordController =
-      TextEditingController(text: '12345678');
+  final TextEditingController emailController = TextEditingController(
+    text: 'instructor@skyacademy.edu',
+  );
+  final TextEditingController passwordController = TextEditingController(
+    text: '12345678',
+  );
 
   bool _isLoading = false;
   bool _obscurePassword = true;

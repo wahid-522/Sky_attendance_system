@@ -7,11 +7,7 @@ class HomeBottomNavBar extends StatelessWidget {
   final int currentIndex;
   final ValueChanged<int>? onTap;
 
-  const HomeBottomNavBar({
-    super.key,
-    required this.currentIndex,
-    this.onTap,
-  });
+  const HomeBottomNavBar({super.key, required this.currentIndex, this.onTap});
 
   static void navigateToTab(
     BuildContext context,
@@ -69,10 +65,7 @@ class HomeBottomNavBar extends StatelessWidget {
       decoration: const BoxDecoration(
         color: Colors.white,
         border: Border(
-          top: BorderSide(
-            color: AppColors.dividerColor,
-            width: 1.0,
-          ),
+          top: BorderSide(color: AppColors.dividerColor, width: 1.0),
         ),
       ),
       child: SafeArea(
@@ -145,20 +138,12 @@ class HomeBottomNavBar extends StatelessWidget {
                   color: AppColors.navActivePill,
                   borderRadius: BorderRadius.circular(16.0),
                 ),
-                child: Icon(
-                  icon,
-                  size: 20.0,
-                  color: AppColors.navActiveIcon,
-                ),
+                child: Icon(icon, size: 20.0, color: AppColors.navActiveIcon),
               )
             else
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 3.0),
-                child: Icon(
-                  icon,
-                  size: 20.0,
-                  color: AppColors.navInactive,
-                ),
+                child: Icon(icon, size: 20.0, color: AppColors.navInactive),
               ),
             const SizedBox(height: 3.0),
             Text(

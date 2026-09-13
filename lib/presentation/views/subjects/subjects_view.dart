@@ -83,13 +83,13 @@ class _SubjectsViewState extends State<SubjectsView> {
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                  color: const Color(0xFFCBD5E1),
+                                  color: AppColors.lightBlueBorder,
                                   width: 1.2,
                                 ),
                                 gradient: const LinearGradient(
                                   colors: [
-                                    Color(0xFF334155),
-                                    Color(0xFF1E293B),
+                                    Color(0xFFE0F2FE),
+                                    Color(0xFFBAE6FD),
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
@@ -99,7 +99,7 @@ class _SubjectsViewState extends State<SubjectsView> {
                                 child: Icon(
                                   Icons.person,
                                   size: 22.0,
-                                  color: Color(0xFFE2E8F0),
+                                  color: AppColors.primarySkyBlue,
                                 ),
                               ),
                             ),
@@ -174,7 +174,7 @@ class _SubjectsViewState extends State<SubjectsView> {
                                     Icon(
                                       Icons.arrow_back_rounded,
                                       size: 18.0,
-                                      color: Color(0xFF334155),
+                                      color: AppColors.primarySkyBlue,
                                     ),
                                     SizedBox(width: 8.0),
                                     Text(
@@ -182,7 +182,7 @@ class _SubjectsViewState extends State<SubjectsView> {
                                       style: TextStyle(
                                         fontSize: 11.5,
                                         fontWeight: FontWeight.w600,
-                                        color: Color(0xFF64748B),
+                                        color: AppColors.primarySkyBlue,
                                         letterSpacing: 0.8,
                                       ),
                                     ),

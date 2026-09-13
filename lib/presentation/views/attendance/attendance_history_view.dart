@@ -82,13 +82,13 @@ class _AttendanceHistoryViewState extends State<AttendanceHistoryView> {
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                  color: const Color(0xFFE2E8F0),
+                                  color: const Color(0xFFBAE6FD),
                                   width: 1.2,
                                 ),
                                 gradient: const LinearGradient(
                                   colors: [
-                                    Color(0xFFD6A265),
-                                    Color(0xFF8B5E3C),
+                                    Color(0xFFE0F2FE),
+                                    Color(0xFFBAE6FD),
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
@@ -98,7 +98,7 @@ class _AttendanceHistoryViewState extends State<AttendanceHistoryView> {
                                 child: Icon(
                                   Icons.person,
                                   size: 22.0,
-                                  color: Color(0xFFFDFBF7),
+                                  color: AppColors.primarySkyBlue,
                                 ),
                               ),
                             ),

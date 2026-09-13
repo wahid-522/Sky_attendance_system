@@ -29,12 +29,17 @@ class StudentAttendanceTile extends StatelessWidget {
                 width: 38.0,
                 height: 38.0,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: const Color(0xFFF0F7FF),
                   borderRadius: BorderRadius.circular(8.0),
                   border: Border.all(
                     color: AppColors.studentAvatarBorder,
                     width: 1.0,
                   ),
+                ),
+                child: const Icon(
+                  Icons.person,
+                  size: 20.0,
+                  color: AppColors.primarySkyBlue,
                 ),
               ),
               const SizedBox(width: 14.0),

@@ -83,13 +83,13 @@ class _HomeViewState extends State<HomeView> {
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                  color: const Color(0xFFE2E8F0),
+                                  color: AppColors.lightBlueBorder,
                                   width: 1.2,
                                 ),
                                 gradient: const LinearGradient(
                                   colors: [
-                                    Color(0xFFE2D4C9),
-                                    Color(0xFFC7B198),
+                                    Color(0xFFE0F2FE),
+                                    Color(0xFFBAE6FD),
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
@@ -99,7 +99,7 @@ class _HomeViewState extends State<HomeView> {
                                 child: Icon(
                                   Icons.person,
                                   size: 22.0,
-                                  color: Color(0xFF5C4033),
+                                  color: AppColors.primarySkyBlue,
                                 ),
                               ),
                             ),

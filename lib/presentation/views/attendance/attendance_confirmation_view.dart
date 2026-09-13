@@ -35,9 +35,9 @@ class _AttendanceConfirmationViewState
         title: const Text(
           AppStrings.confirmationHeaderTitle,
           style: TextStyle(
-            color: Color(0xFFCBD5E1),
+            color: AppColors.textPrimary,
             fontSize: 18.0,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w700,
             letterSpacing: 0.1,
           ),
         ),

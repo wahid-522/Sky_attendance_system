@@ -78,11 +78,14 @@ class _ProfileViewState extends State<ProfileView> {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
-                            color: const Color(0xFFCBD5E1),
+                            color: const Color(0xFFBAE6FD),
                             width: 1.2,
                           ),
                           gradient: const LinearGradient(
-                            colors: [Color(0xFF334155), Color(0xFF1E293B)],
+                            colors: [
+                              Color(0xFFE0F2FE),
+                              Color(0xFFBAE6FD),
+                            ],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
@@ -91,7 +94,7 @@ class _ProfileViewState extends State<ProfileView> {
                           child: Icon(
                             Icons.person,
                             size: 22.0,
-                            color: Color(0xFFE2E8F0),
+                            color: AppColors.primarySkyBlue,
                           ),
                         ),
                       ),

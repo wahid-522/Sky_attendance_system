@@ -30,115 +30,16 @@ class _AttendanceHistoryViewState extends State<AttendanceHistoryView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-        title: const Text(
-          AppStrings.attendanceHistoryHeaderTitle,
-          style: TextStyle(
-            color: Color(0xFFCBD5E1),
-            fontSize: 18.0,
-            fontWeight: FontWeight.w400,
-            letterSpacing: 0.1,
-          ),
-        ),
-      ),
+      backgroundColor: const Color(0xFFF8FAFC),
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 420.0),
+            constraints: const BoxConstraints(maxWidth: 440.0),
             child: ListenableBuilder(
               listenable: _viewModel,
               builder: (context, _) {
                 return Column(
                   children: [
-                    // Inner Top Header
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0,
-                        vertical: 12.0,
-                      ),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        border: Border(
-                          bottom: BorderSide(
-                            color: AppColors.dividerColor,
-                            width: 1.0,
-                          ),
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          // Teacher Avatar
-                          InkWell(
-                            onTap: () =>
-                                Navigator.pushNamed(context, AppRoutes.profile),
-                            borderRadius: BorderRadius.circular(16.0),
-                            child: Container(
-                              width: 32.0,
-                              height: 32.0,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: const Color(0xFFBAE6FD),
-                                  width: 1.2,
-                                ),
-                                gradient: const LinearGradient(
-                                  colors: [
-                                    Color(0xFFE0F2FE),
-                                    Color(0xFFBAE6FD),
-                                  ],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                ),
-                              ),
-                              child: const ClipOval(
-                                child: Icon(
-                                  Icons.person,
-                                  size: 22.0,
-                                  color: AppColors.primarySkyBlue,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 10.0),
-
-                          // Academy Name: SKY COACHING ACADEMY
-                          const Expanded(
-                            child: Text(
-                              AppStrings.headerAcademyName,
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.w800,
-                                color: AppColors.primaryNavy,
-                                letterSpacing: 0.4,
-                              ),
-                            ),
-                          ),
-
-                          // Logout Action
-                          IconButton(
-                            icon: const Icon(
-                              Icons.logout_rounded,
-                              size: 20.0,
-                              color: AppColors.primaryNavy,
-                            ),
-                            onPressed: () {
-                              Navigator.pushNamedAndRemoveUntil(
-                                context,
-                                AppRoutes.login,
-                                (route) => false,
-                              );
-                            },
-                            padding: EdgeInsets.zero,
-                            constraints: const BoxConstraints(),
-                          ),
-                        ],
-                      ),
-                    ),
-
                     // Scrollable Main Content Area
                     Expanded(
                       child: SingleChildScrollView(
@@ -152,6 +53,43 @@ class _AttendanceHistoryViewState extends State<AttendanceHistoryView> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            // Screen Section Header
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  'Attendance History',
+                                  style: TextStyle(
+                                    fontSize: 12.0,
+                                    fontWeight: FontWeight.w700,
+                                    color: AppColors.primarySkyBlue,
+                                    letterSpacing: 0.8,
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.logout_rounded,
+                                    size: 18.0,
+                                    color: Color(0xFF64748B),
+                                  ),
+                                  tooltip: 'Logout',
+                                  onPressed: () {
+                                    Navigator.pushNamedAndRemoveUntil(
+                                      context,
+                                      AppRoutes.login,
+                                      (route) => false,
+                                    );
+                                  },
+                                  padding: EdgeInsets.zero,
+                                  constraints: const BoxConstraints(
+                                    minWidth: 28.0,
+                                    minHeight: 28.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 6.0),
+
                             // Course Title
                             Text(
                               _viewModel.courseTitle,

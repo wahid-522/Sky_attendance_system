@@ -19,7 +19,32 @@ class AppColors {
 
   // Card Borders & Shadows
   static const Color cardBorder = Color(0xFFE0EDFB);
+  static const Color cardBorderSubtle = Color(0xFFE2E8F0);
   static const Color cardShadow = Color(0x0A0284C7);
+
+  // Advanced Gradients & Accents
+  static const LinearGradient primaryGradient = LinearGradient(
+    colors: [Color(0xFF0284C7), Color(0xFF0EA5E9)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static const LinearGradient skyCardGradient = LinearGradient(
+    colors: [Color(0xFFFFFFFF), Color(0xFFF8FAFC)],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
+
+  static const LinearGradient headerGradient = LinearGradient(
+    colors: [Color(0xFF0284C7), Color(0xFF0369A1)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static const Color accentCyan = Color(0xFF06B6D4);
+  static const Color accentIndigo = Color(0xFF4F46E5);
+  static const Color accentEmerald = Color(0xFF10B981);
+  static const Color accentAmber = Color(0xFFF59E0B);
 
   // Typography
   static const Color primaryNavy = Color(0xFF0F2847);

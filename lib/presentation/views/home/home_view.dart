@@ -31,115 +31,16 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-        title: const Text(
-          AppStrings.myClassesHeaderTitle,
-          style: TextStyle(
-            color: AppColors.headerBlue,
-            fontSize: 18.0,
-            fontWeight: FontWeight.w500,
-            letterSpacing: 0.1,
-          ),
-        ),
-      ),
+      backgroundColor: const Color(0xFFF8FAFC),
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 420.0),
+            constraints: const BoxConstraints(maxWidth: 440.0),
             child: ListenableBuilder(
               listenable: _viewModel,
               builder: (context, _) {
                 return Column(
                   children: [
-                    // Top App Header
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0,
-                        vertical: 12.0,
-                      ),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        border: Border(
-                          bottom: BorderSide(
-                            color: AppColors.dividerColor,
-                            width: 1.0,
-                          ),
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          // Teacher Avatar
-                          InkWell(
-                            onTap: () =>
-                                Navigator.pushNamed(context, AppRoutes.profile),
-                            borderRadius: BorderRadius.circular(16.0),
-                            child: Container(
-                              width: 32.0,
-                              height: 32.0,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: AppColors.lightBlueBorder,
-                                  width: 1.2,
-                                ),
-                                gradient: const LinearGradient(
-                                  colors: [
-                                    Color(0xFFE0F2FE),
-                                    Color(0xFFBAE6FD),
-                                  ],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                ),
-                              ),
-                              child: const ClipOval(
-                                child: Icon(
-                                  Icons.person,
-                                  size: 22.0,
-                                  color: AppColors.primarySkyBlue,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 10.0),
-
-                          // Academy Name
-                          const Expanded(
-                            child: Text(
-                              AppStrings.headerAcademyName,
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.w800,
-                                color: AppColors.primaryNavy,
-                                letterSpacing: 0.4,
-                              ),
-                            ),
-                          ),
-
-                          // Logout Action
-                          IconButton(
-                            icon: const Icon(
-                              Icons.logout_rounded,
-                              size: 20.0,
-                              color: AppColors.primaryNavy,
-                            ),
-                            onPressed: () {
-                              Navigator.pushNamedAndRemoveUntil(
-                                context,
-                                AppRoutes.login,
-                                (route) => false,
-                              );
-                            },
-                            padding: EdgeInsets.zero,
-                            constraints: const BoxConstraints(),
-                          ),
-                        ],
-                      ),
-                    ),
-
                     // Main Scrollable Area
                     Expanded(
                       child: SingleChildScrollView(
@@ -148,36 +49,152 @@ class _HomeViewState extends State<HomeView> {
                           16.0,
                           18.0,
                           16.0,
-                          16.0,
+                          20.0,
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // "My Classes" & "Online" Status Row
+                            // Hero Executive Stats Deck
+                            Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.all(16.0),
+                              decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    Color(0xFF0284C7),
+                                    Color(0xFF0369A1),
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
+                                borderRadius: BorderRadius.circular(18.0),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Color(0x280284C7),
+                                    blurRadius: 18.0,
+                                    offset: Offset(0, 8),
+                                  ),
+                                ],
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      const Row(
+                                        children: [
+                                          Icon(
+                                            Icons.verified_rounded,
+                                            size: 16.0,
+                                            color: Colors.white,
+                                          ),
+                                          SizedBox(width: 6.0),
+                                          Text(
+                                            'Today\'s Overview',
+                                            style: TextStyle(
+                                              fontSize: 13.0,
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.white,
+                                              letterSpacing: 0.2,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 8.0,
+                                          vertical: 3.0,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: const Color(0x2EFFFFFF),
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
+                                        ),
+                                        child: const Text(
+                                          'Term 2026',
+                                          style: TextStyle(
+                                            fontSize: 11.0,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 16.0),
+                                  Row(
+                                    children: [
+                                      _buildHeroMetric(
+                                        '3',
+                                        'Classes',
+                                        Icons.school_rounded,
+                                      ),
+                                      _buildMetricDivider(),
+                                      _buildHeroMetric(
+                                        '90',
+                                        'Students',
+                                        Icons.groups_rounded,
+                                      ),
+                                      _buildMetricDivider(),
+                                      _buildHeroMetric(
+                                        '96.4%',
+                                        'Attendance',
+                                        Icons.trending_up_rounded,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(height: 22.0),
+
+                            // "My Classes" & Status Row
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                const Text(
-                                  AppStrings.myClassesTitle,
-                                  style: TextStyle(
-                                    fontSize: 21.0,
-                                    fontWeight: FontWeight.w800,
-                                    color: Color(0xFF0F172A),
-                                    letterSpacing: -0.2,
+                                const Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        AppStrings.myClassesTitle,
+                                        style: TextStyle(
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.w800,
+                                          color: Color(0xFF0F172A),
+                                          letterSpacing: -0.3,
+                                        ),
+                                      ),
+                                      SizedBox(height: 2.0),
+                                      Text(
+                                        'Select a class to manage attendance',
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontSize: 12.0,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color(0xFF64748B),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
+                                const SizedBox(width: 8.0),
 
-                                // Online Badge
+                                // Modern Pulse Online Badge
                                 Container(
                                   padding: const EdgeInsets.symmetric(
-                                    horizontal: 9.0,
-                                    vertical: 3.5,
+                                    horizontal: 10.0,
+                                    vertical: 5.0,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: AppColors.onlineBadgeBg,
-                                    borderRadius: BorderRadius.circular(16.0),
+                                    color: const Color(0xFFE0F2FE),
+                                    borderRadius: BorderRadius.circular(20.0),
                                     border: Border.all(
-                                      color: AppColors.onlineBadgeBorder,
+                                      color: const Color(0xFFBAE6FD),
                                       width: 1.0,
                                     ),
                                   ),
@@ -187,23 +204,46 @@ class _HomeViewState extends State<HomeView> {
                                       Icon(
                                         Icons.cloud_done_rounded,
                                         size: 13.0,
-                                        color: AppColors.onlineBadgeText,
+                                        color: AppColors.primarySkyBlue,
                                       ),
-                                      SizedBox(width: 4.0),
+                                      SizedBox(width: 5.0),
                                       Text(
-                                        AppStrings.statusOnline,
+                                        'Synced',
                                         style: TextStyle(
-                                          color: AppColors.onlineBadgeText,
-                                          fontSize: 11.0,
-                                          fontWeight: FontWeight.w600,
+                                          color: AppColors.primarySkyBlue,
+                                          fontSize: 11.5,
+                                          fontWeight: FontWeight.w700,
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
+                                const SizedBox(width: 4.0),
+
+                                // Logout Action
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.logout_rounded,
+                                    size: 20.0,
+                                    color: Color(0xFF64748B),
+                                  ),
+                                  tooltip: 'Logout',
+                                  onPressed: () {
+                                    Navigator.pushNamedAndRemoveUntil(
+                                      context,
+                                      AppRoutes.login,
+                                      (route) => false,
+                                    );
+                                  },
+                                  padding: EdgeInsets.zero,
+                                  constraints: const BoxConstraints(
+                                    minWidth: 32.0,
+                                    minHeight: 32.0,
+                                  ),
+                                ),
                               ],
                             ),
-                            const SizedBox(height: 16.0),
+                            const SizedBox(height: 14.0),
 
                             // Class Cards List
                             ..._viewModel.classes.map(
@@ -235,6 +275,53 @@ class _HomeViewState extends State<HomeView> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildHeroMetric(String value, String label, IconData icon) {
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(icon, size: 14.0, color: const Color(0xFFBAE6FD)),
+              const SizedBox(width: 4.0),
+              Flexible(
+                child: Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 11.5,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xFFE0F2FE),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 6.0),
+          Text(
+            value,
+            style: const TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.w900,
+              color: Colors.white,
+              letterSpacing: -0.5,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMetricDivider() {
+    return Container(
+      width: 1.0,
+      height: 36.0,
+      margin: const EdgeInsets.symmetric(horizontal: 10.0),
+      color: const Color(0x33FFFFFF),
     );
   }
 }

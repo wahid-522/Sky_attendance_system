@@ -27,43 +27,36 @@ class _AttendanceConfirmationViewState
     final confirmation = _viewModel.confirmation;
 
     return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-        title: const Text(
-          AppStrings.confirmationHeaderTitle,
-          style: TextStyle(
-            color: AppColors.textPrimary,
-            fontSize: 18.0,
-            fontWeight: FontWeight.w700,
-            letterSpacing: 0.1,
-          ),
-        ),
-      ),
+      backgroundColor: const Color(0xFFF8FAFC),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.symmetric(
               horizontal: 20.0,
-              vertical: 16.0,
+              vertical: 24.0,
             ),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 380.0),
+              constraints: const BoxConstraints(maxWidth: 400.0),
               child: Container(
-                padding: const EdgeInsets.fromLTRB(24.0, 34.0, 24.0, 28.0),
+                padding: const EdgeInsets.fromLTRB(26.0, 36.0, 26.0, 30.0),
                 decoration: BoxDecoration(
-                  color: AppColors.cardBackground,
-                  borderRadius: BorderRadius.circular(16.0),
-                  border: Border.all(color: AppColors.cardBorder, width: 1.0),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(24.0),
+                  border: Border.all(
+                    color: const Color(0xFFE2E8F0),
+                    width: 1.0,
+                  ),
                   boxShadow: const [
                     BoxShadow(
-                      color: AppColors.cardShadow,
-                      blurRadius: 20.0,
-                      spreadRadius: 0.0,
-                      offset: Offset(0, 6),
+                      color: Color(0x080F172A),
+                      blurRadius: 12.0,
+                      offset: Offset(0, 4),
+                    ),
+                    BoxShadow(
+                      color: Color(0x140284C7),
+                      blurRadius: 28.0,
+                      offset: Offset(0, 10),
                     ),
                   ],
                 ),
@@ -71,35 +64,67 @@ class _AttendanceConfirmationViewState
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    // Top Success Badge
+                    // Top Tag
                     Container(
-                      width: 60.0,
-                      height: 60.0,
-                      decoration: BoxDecoration(
-                        color: AppColors.confirmationBadgeNavy,
-                        borderRadius: BorderRadius.circular(14.0),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10.0,
+                        vertical: 4.0,
                       ),
-                      child: const Icon(
-                        Icons.check_circle_outline_rounded,
-                        size: 30.0,
-                        color: AppColors.confirmationBadgeIcon,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFE0F2FE),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      child: const Text(
+                        AppStrings.confirmationHeaderTitle,
+                        style: TextStyle(
+                          fontSize: 11.0,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.primarySkyBlue,
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 22.0),
+                    const SizedBox(height: 16.0),
+
+                    // Glowing Checkmark Badge
+                    Container(
+                      width: 68.0,
+                      height: 68.0,
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                          colors: [Color(0xFF0284C7), Color(0xFF38BDF8)],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        shape: BoxShape.circle,
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Color(0x350284C7),
+                            blurRadius: 20.0,
+                            offset: Offset(0, 8),
+                          ),
+                        ],
+                      ),
+                      child: const Icon(
+                        Icons.check_rounded,
+                        size: 36.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(height: 18.0),
 
                     // Heading
                     const Text(
                       '${AppStrings.attendanceLine1}\n${AppStrings.attendanceLine2}\n${AppStrings.attendanceLine3}',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 22.0,
+                        fontSize: 21.0,
                         fontWeight: FontWeight.w800,
-                        color: Color(0xFF091E3A),
-                        letterSpacing: -0.2,
-                        height: 1.2,
+                        color: Color(0xFF0F172A),
+                        letterSpacing: -0.3,
+                        height: 1.25,
                       ),
                     ),
-                    const SizedBox(height: 10.0),
+                    const SizedBox(height: 8.0),
 
                     // Subtitle
                     const Text(
@@ -108,7 +133,7 @@ class _AttendanceConfirmationViewState
                       style: TextStyle(
                         fontSize: 12.5,
                         fontWeight: FontWeight.w400,
-                        color: Color(0xFF475569),
+                        color: Color(0xFF64748B),
                         height: 1.4,
                       ),
                     ),
@@ -117,12 +142,12 @@ class _AttendanceConfirmationViewState
                     // Subject Session Card
                     Container(
                       width: double.infinity,
-                      padding: const EdgeInsets.all(14.0),
+                      padding: const EdgeInsets.all(16.0),
                       decoration: BoxDecoration(
-                        color: AppColors.confirmationSessionBg,
-                        borderRadius: BorderRadius.circular(8.0),
+                        color: const Color(0xFFF8FAFC),
+                        borderRadius: BorderRadius.circular(14.0),
                         border: Border.all(
-                          color: AppColors.confirmationSessionBorder,
+                          color: const Color(0xFFE2E8F0),
                           width: 1.0,
                         ),
                       ),
@@ -132,29 +157,29 @@ class _AttendanceConfirmationViewState
                           const Row(
                             children: [
                               Icon(
-                                Icons.school_outlined,
-                                size: 15.0,
-                                color: Color(0xFF475569),
+                                Icons.school_rounded,
+                                size: 16.0,
+                                color: AppColors.primarySkyBlue,
                               ),
                               SizedBox(width: 6.0),
                               Text(
                                 AppStrings.subjectSessionLabel,
                                 style: TextStyle(
-                                  fontSize: 10.5,
-                                  fontWeight: FontWeight.w600,
-                                  color: Color(0xFF64748B),
+                                  fontSize: 11.0,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.primarySkyBlue,
                                   letterSpacing: 0.5,
                                 ),
                               ),
                             ],
                           ),
-                          const SizedBox(height: 6.0),
+                          const SizedBox(height: 8.0),
                           Text(
                             confirmation.subjectName,
                             style: const TextStyle(
-                              fontSize: 15.5,
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xFF0F2847),
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w800,
+                              color: Color(0xFF0F172A),
                             ),
                           ),
                           const SizedBox(height: 3.0),
@@ -169,7 +194,7 @@ class _AttendanceConfirmationViewState
                         ],
                       ),
                     ),
-                    const SizedBox(height: 14.0),
+                    const SizedBox(height: 16.0),
 
                     // Stats Row: Present & Absent
                     Row(
@@ -179,26 +204,30 @@ class _AttendanceConfirmationViewState
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 14.0),
                             decoration: BoxDecoration(
-                              color: AppColors.statPresentBg,
-                              borderRadius: BorderRadius.circular(8.0),
+                              color: const Color(0xFFE0F2FE),
+                              borderRadius: BorderRadius.circular(12.0),
+                              border: Border.all(
+                                color: const Color(0xFFBAE6FD),
+                                width: 1.0,
+                              ),
                             ),
                             child: Column(
                               children: [
                                 Text(
                                   '${confirmation.presentCount}',
                                   style: const TextStyle(
-                                    fontSize: 26.0,
-                                    fontWeight: FontWeight.w800,
-                                    color: AppColors.statPresentText,
+                                    fontSize: 28.0,
+                                    fontWeight: FontWeight.w900,
+                                    color: AppColors.primarySkyBlue,
                                   ),
                                 ),
                                 const SizedBox(height: 2.0),
                                 const Text(
                                   AppStrings.presentStatLabel,
                                   style: TextStyle(
-                                    fontSize: 10.5,
+                                    fontSize: 11.0,
                                     fontWeight: FontWeight.w700,
-                                    color: AppColors.statPresentText,
+                                    color: AppColors.primarySkyBlue,
                                     letterSpacing: 0.8,
                                   ),
                                 ),
@@ -213,26 +242,30 @@ class _AttendanceConfirmationViewState
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 14.0),
                             decoration: BoxDecoration(
-                              color: AppColors.statAbsentBg,
-                              borderRadius: BorderRadius.circular(8.0),
+                              color: const Color(0xFFFEE2E2),
+                              borderRadius: BorderRadius.circular(12.0),
+                              border: Border.all(
+                                color: const Color(0xFFFECDD3),
+                                width: 1.0,
+                              ),
                             ),
                             child: Column(
                               children: [
                                 Text(
                                   '${confirmation.absentCount}',
                                   style: const TextStyle(
-                                    fontSize: 26.0,
-                                    fontWeight: FontWeight.w800,
-                                    color: AppColors.statAbsentText,
+                                    fontSize: 28.0,
+                                    fontWeight: FontWeight.w900,
+                                    color: Color(0xFFDC2626),
                                   ),
                                 ),
                                 const SizedBox(height: 2.0),
                                 const Text(
                                   AppStrings.absentStatLabel,
                                   style: TextStyle(
-                                    fontSize: 10.5,
+                                    fontSize: 11.0,
                                     fontWeight: FontWeight.w700,
-                                    color: AppColors.statAbsentText,
+                                    color: Color(0xFFDC2626),
                                     letterSpacing: 0.8,
                                   ),
                                 ),
@@ -242,12 +275,12 @@ class _AttendanceConfirmationViewState
                         ),
                       ],
                     ),
-                    const SizedBox(height: 22.0),
+                    const SizedBox(height: 24.0),
 
                     // Return to Subject List Button
                     SizedBox(
                       width: double.infinity,
-                      height: 44.0,
+                      height: 48.0,
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.pushNamedAndRemoveUntil(
@@ -257,12 +290,13 @@ class _AttendanceConfirmationViewState
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.buttonNavy,
+                          backgroundColor: AppColors.primarySkyBlue,
                           foregroundColor: Colors.white,
-                          elevation: 0,
-                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          elevation: 2,
+                          shadowColor: const Color(0x300284C7),
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(6.0),
+                            borderRadius: BorderRadius.circular(12.0),
                           ),
                         ),
                         child: const Row(
@@ -278,8 +312,53 @@ class _AttendanceConfirmationViewState
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   fontSize: 13.0,
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight.w700,
                                   color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10.0),
+
+                    // View History Secondary Action
+                    SizedBox(
+                      width: double.infinity,
+                      height: 44.0,
+                      child: OutlinedButton(
+                        onPressed: () {
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            AppRoutes.attendanceHistory,
+                            (route) => false,
+                          );
+                        },
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: const Color(0xFF475569),
+                          side: const BorderSide(
+                            color: Color(0xFFCBD5E1),
+                            width: 1.0,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                        ),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.history_rounded, size: 16.0),
+                            SizedBox(width: 8.0),
+                            Flexible(
+                              child: Text(
+                                'View Attendance History',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 12.5,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ),

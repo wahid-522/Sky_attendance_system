@@ -12,6 +12,11 @@ class AttendanceViewModel extends ChangeNotifier {
   late List<StudentEntity> _students;
   List<StudentEntity> get students => _students;
 
+  int get presentCount =>
+      _students.where((s) => s.status == AttendanceStatus.present).length;
+  int get absentCount =>
+      _students.where((s) => s.status == AttendanceStatus.absent).length;
+
   AttendanceViewModel() {
     _initStudents();
   }

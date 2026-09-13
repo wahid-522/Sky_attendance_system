@@ -31,115 +31,16 @@ class _SubjectsViewState extends State<SubjectsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-        title: const Text(
-          AppStrings.subjectsHeaderTitle,
-          style: TextStyle(
-            color: Color(0xFF94A3B8),
-            fontSize: 18.0,
-            fontWeight: FontWeight.w400,
-            letterSpacing: 0.1,
-          ),
-        ),
-      ),
+      backgroundColor: const Color(0xFFF8FAFC),
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 420.0),
+            constraints: const BoxConstraints(maxWidth: 440.0),
             child: ListenableBuilder(
               listenable: _viewModel,
               builder: (context, _) {
                 return Column(
                   children: [
-                    // Inner Top Header
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0,
-                        vertical: 12.0,
-                      ),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        border: Border(
-                          bottom: BorderSide(
-                            color: AppColors.dividerColor,
-                            width: 1.0,
-                          ),
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          // Teacher Avatar in Suit
-                          InkWell(
-                            onTap: () =>
-                                Navigator.pushNamed(context, AppRoutes.profile),
-                            borderRadius: BorderRadius.circular(16.0),
-                            child: Container(
-                              width: 32.0,
-                              height: 32.0,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: AppColors.lightBlueBorder,
-                                  width: 1.2,
-                                ),
-                                gradient: const LinearGradient(
-                                  colors: [
-                                    Color(0xFFE0F2FE),
-                                    Color(0xFFBAE6FD),
-                                  ],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                ),
-                              ),
-                              child: const ClipOval(
-                                child: Icon(
-                                  Icons.person,
-                                  size: 22.0,
-                                  color: AppColors.primarySkyBlue,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 10.0),
-
-                          // Academy Name: SKY ACADEMY
-                          const Expanded(
-                            child: Text(
-                              AppStrings.headerSkyAcademy,
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.w800,
-                                color: AppColors.primaryNavy,
-                                letterSpacing: 0.4,
-                              ),
-                            ),
-                          ),
-
-                          // Logout Action
-                          IconButton(
-                            icon: const Icon(
-                              Icons.logout_rounded,
-                              size: 20.0,
-                              color: AppColors.primaryNavy,
-                            ),
-                            onPressed: () {
-                              Navigator.pushNamedAndRemoveUntil(
-                                context,
-                                AppRoutes.login,
-                                (route) => false,
-                              );
-                            },
-                            padding: EdgeInsets.zero,
-                            constraints: const BoxConstraints(),
-                          ),
-                        ],
-                      ),
-                    ),
-
                     // Main Content Body
                     Expanded(
                       child: SingleChildScrollView(
@@ -148,7 +49,7 @@ class _SubjectsViewState extends State<SubjectsView> {
                           16.0,
                           16.0,
                           16.0,
-                          16.0,
+                          20.0,
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -165,23 +66,34 @@ class _SubjectsViewState extends State<SubjectsView> {
                                   );
                                 }
                               },
-                              borderRadius: BorderRadius.circular(4.0),
-                              child: const Padding(
-                                padding: EdgeInsets.symmetric(vertical: 4.0),
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 4.0,
+                                  horizontal: 4.0,
+                                ),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Icon(
-                                      Icons.arrow_back_rounded,
-                                      size: 18.0,
-                                      color: AppColors.primarySkyBlue,
+                                    Container(
+                                      padding: const EdgeInsets.all(4.0),
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFE0F2FE),
+                                        borderRadius:
+                                            BorderRadius.circular(6.0),
+                                      ),
+                                      child: const Icon(
+                                        Icons.arrow_back_rounded,
+                                        size: 15.0,
+                                        color: AppColors.primarySkyBlue,
+                                      ),
                                     ),
-                                    SizedBox(width: 8.0),
-                                    Text(
+                                    const SizedBox(width: 8.0),
+                                    const Text(
                                       AppStrings.academicsLabel,
                                       style: TextStyle(
-                                        fontSize: 11.5,
-                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12.0,
+                                        fontWeight: FontWeight.w700,
                                         color: AppColors.primarySkyBlue,
                                         letterSpacing: 0.8,
                                       ),
@@ -190,7 +102,7 @@ class _SubjectsViewState extends State<SubjectsView> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 12.0),
+                            const SizedBox(height: 14.0),
 
                             // Main Title: Class 10-A - Subjects
                             const Text(
@@ -198,8 +110,17 @@ class _SubjectsViewState extends State<SubjectsView> {
                               style: TextStyle(
                                 fontSize: 21.0,
                                 fontWeight: FontWeight.w800,
-                                color: Color(0xFF0A2540),
+                                color: Color(0xFF0F172A),
                                 letterSpacing: -0.3,
+                              ),
+                            ),
+                            const SizedBox(height: 4.0),
+                            const Text(
+                              'Choose a subject module to record attendance',
+                              style: TextStyle(
+                                fontSize: 12.5,
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xFF64748B),
                               ),
                             ),
                             const SizedBox(height: 18.0),

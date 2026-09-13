@@ -32,128 +32,16 @@ class _SubmittedAttendanceViewState extends State<SubmittedAttendanceView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_rounded, color: Color(0xFF334155)),
-          onPressed: () {
-            if (Navigator.canPop(context)) {
-              Navigator.pop(context);
-            } else {
-              Navigator.pushReplacementNamed(
-                context,
-                AppRoutes.attendanceHistory,
-              );
-            }
-          },
-        ),
-        title: const Text(
-          AppStrings.submittedAttendanceHeaderTitle,
-          style: TextStyle(
-            color: Color(0xFFCBD5E1),
-            fontSize: 18.0,
-            fontWeight: FontWeight.w400,
-            letterSpacing: 0.1,
-          ),
-        ),
-      ),
+      backgroundColor: const Color(0xFFF8FAFC),
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 420.0),
+            constraints: const BoxConstraints(maxWidth: 440.0),
             child: ListenableBuilder(
               listenable: _viewModel,
               builder: (context, _) {
                 return Column(
                   children: [
-                    // Inner Top Header
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0,
-                        vertical: 12.0,
-                      ),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        border: Border(
-                          bottom: BorderSide(
-                            color: AppColors.dividerColor,
-                            width: 1.0,
-                          ),
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          // Teacher Avatar
-                          InkWell(
-                            onTap: () =>
-                                Navigator.pushNamed(context, AppRoutes.profile),
-                            borderRadius: BorderRadius.circular(16.0),
-                            child: Container(
-                              width: 32.0,
-                              height: 32.0,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: const Color(0xFFBAE6FD),
-                                  width: 1.2,
-                                ),
-                                gradient: const LinearGradient(
-                                  colors: [
-                                    Color(0xFFE0F2FE),
-                                    Color(0xFFBAE6FD),
-                                  ],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                ),
-                              ),
-                              child: const ClipOval(
-                                child: Icon(
-                                  Icons.person,
-                                  size: 22.0,
-                                  color: AppColors.primarySkyBlue,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 10.0),
-
-                          // Academy Name: SKY COACHING ACADEMY
-                          const Expanded(
-                            child: Text(
-                              AppStrings.headerAcademyName,
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.w800,
-                                color: AppColors.primaryNavy,
-                                letterSpacing: 0.4,
-                              ),
-                            ),
-                          ),
-
-                          // Logout Action
-                          IconButton(
-                            icon: const Icon(
-                              Icons.logout_rounded,
-                              size: 20.0,
-                              color: AppColors.primaryNavy,
-                            ),
-                            onPressed: () {
-                              Navigator.pushNamedAndRemoveUntil(
-                                context,
-                                AppRoutes.login,
-                                (route) => false,
-                              );
-                            },
-                            padding: EdgeInsets.zero,
-                            constraints: const BoxConstraints(),
-                          ),
-                        ],
-                      ),
-                    ),
-
                     // Scrollable Body
                     Expanded(
                       child: SingleChildScrollView(
@@ -167,36 +55,62 @@ class _SubmittedAttendanceViewState extends State<SubmittedAttendanceView> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // "PREVIOUSLY SUBMITTED" Status Pill
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 10.0,
-                                vertical: 4.0,
-                              ),
-                              decoration: BoxDecoration(
-                                color: AppColors.previouslySubmittedBg,
-                                borderRadius: BorderRadius.circular(16.0),
-                              ),
-                              child: const Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(
-                                    Icons.check_circle_outline_rounded,
-                                    size: 13.0,
-                                    color: AppColors.previouslySubmittedText,
+                            // Top Row: Status Pill & Logout Action
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                // "PREVIOUSLY SUBMITTED" Status Pill
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 10.0,
+                                    vertical: 4.0,
                                   ),
-                                  SizedBox(width: 5.0),
-                                  Text(
-                                    AppStrings.previouslySubmittedLabel,
-                                    style: TextStyle(
-                                      fontSize: 10.5,
-                                      fontWeight: FontWeight.w600,
-                                      color: AppColors.previouslySubmittedText,
-                                      letterSpacing: 0.6,
-                                    ),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.previouslySubmittedBg,
+                                    borderRadius: BorderRadius.circular(16.0),
                                   ),
-                                ],
-                              ),
+                                  child: const Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(
+                                        Icons.check_circle_outline_rounded,
+                                        size: 13.0,
+                                        color: AppColors.previouslySubmittedText,
+                                      ),
+                                      SizedBox(width: 5.0),
+                                      Text(
+                                        AppStrings.previouslySubmittedLabel,
+                                        style: TextStyle(
+                                          fontSize: 10.5,
+                                          fontWeight: FontWeight.w600,
+                                          color: AppColors.previouslySubmittedText,
+                                          letterSpacing: 0.6,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.logout_rounded,
+                                    size: 18.0,
+                                    color: Color(0xFF64748B),
+                                  ),
+                                  tooltip: 'Logout',
+                                  onPressed: () {
+                                    Navigator.pushNamedAndRemoveUntil(
+                                      context,
+                                      AppRoutes.login,
+                                      (route) => false,
+                                    );
+                                  },
+                                  padding: EdgeInsets.zero,
+                                  constraints: const BoxConstraints(
+                                    minWidth: 28.0,
+                                    minHeight: 28.0,
+                                  ),
+                                ),
+                              ],
                             ),
                             const SizedBox(height: 10.0),
 

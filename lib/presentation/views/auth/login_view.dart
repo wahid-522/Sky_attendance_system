@@ -63,21 +63,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-        title: const Text(
-          AppStrings.headerTitle,
-          style: TextStyle(
-            color: AppColors.headerBlue,
-            fontSize: 18.0,
-            fontWeight: FontWeight.w500,
-            letterSpacing: 0.1,
-          ),
-        ),
-      ),
+      backgroundColor: const Color(0xFFF8FAFC),
       body: SafeArea(
         child: ListenableBuilder(
           listenable: _viewModel,
@@ -87,25 +73,29 @@ class _LoginViewState extends State<LoginView> {
                 physics: const BouncingScrollPhysics(),
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20.0,
-                  vertical: 16.0,
+                  vertical: 24.0,
                 ),
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 380.0),
+                  constraints: const BoxConstraints(maxWidth: 400.0),
                   child: Container(
-                    padding: const EdgeInsets.fromLTRB(28.0, 34.0, 28.0, 30.0),
+                    padding: const EdgeInsets.fromLTRB(28.0, 38.0, 28.0, 32.0),
                     decoration: BoxDecoration(
-                      color: AppColors.cardBackground,
-                      borderRadius: BorderRadius.circular(16.0),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(24.0),
                       border: Border.all(
-                        color: AppColors.cardBorder,
+                        color: const Color(0xFFE2E8F0),
                         width: 1.0,
                       ),
                       boxShadow: const [
                         BoxShadow(
-                          color: AppColors.cardShadow,
-                          blurRadius: 20.0,
-                          spreadRadius: 0.0,
-                          offset: Offset(0, 6),
+                          color: Color(0x080F172A),
+                          blurRadius: 12.0,
+                          offset: Offset(0, 4),
+                        ),
+                        BoxShadow(
+                          color: Color(0x140284C7),
+                          blurRadius: 28.0,
+                          offset: Offset(0, 10),
                         ),
                       ],
                     ),
@@ -115,16 +105,31 @@ class _LoginViewState extends State<LoginView> {
                       children: [
                         // Badge Icon
                         Container(
-                          width: 52.0,
-                          height: 52.0,
+                          width: 64.0,
+                          height: 64.0,
                           decoration: BoxDecoration(
-                            color: AppColors.badgeBackground,
-                            borderRadius: BorderRadius.circular(12.0),
+                            gradient: const LinearGradient(
+                              colors: [Color(0xFFE0F2FE), Color(0xFFBAE6FD)],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                            borderRadius: BorderRadius.circular(18.0),
+                            border: Border.all(
+                              color: const Color(0xFFBAE6FD),
+                              width: 1.0,
+                            ),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color(0x150284C7),
+                                blurRadius: 12.0,
+                                offset: Offset(0, 4),
+                              ),
+                            ],
                           ),
                           child: const Icon(
-                            Icons.admin_panel_settings_outlined,
-                            size: 26.0,
-                            color: AppColors.badgeIcon,
+                            Icons.school_rounded,
+                            size: 32.0,
+                            color: AppColors.primarySkyBlue,
                           ),
                         ),
                         const SizedBox(height: 20.0),

@@ -3,7 +3,7 @@ class ApiConstants {
 
   // ── Change this to your machine's local IP when testing on a physical device.
   // ── For Android emulator use 10.0.2.2, for iOS simulator use 127.0.0.1
-  static const String baseUrl = 'http://localhost:5000/api/app';
+  static const String baseUrl = 'https://sky-pulse-backend.vercel.app/';
 
   // ── Auth ──────────────────────────────────────────────────────────────────
   static const String login   = '$baseUrl/auth/login';

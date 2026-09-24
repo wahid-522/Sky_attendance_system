@@ -104,10 +104,10 @@ class _SubjectsViewState extends State<SubjectsView> {
                             ),
                             const SizedBox(height: 14.0),
 
-                            // Main Title: Class 10-A - Subjects
-                            const Text(
-                              AppStrings.class10ASubjectsTitle,
-                              style: TextStyle(
+                            // Main Title: dynamic class name
+                            Text(
+                              _viewModel.pageTitle,
+                              style: const TextStyle(
                                 fontSize: 21.0,
                                 fontWeight: FontWeight.w800,
                                 color: Color(0xFF0F172A),

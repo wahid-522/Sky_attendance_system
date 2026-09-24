@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sky_attendance/core/session/app_session.dart';
 import 'package:sky_attendance/core/theme/app_colors.dart';
 import 'package:sky_attendance/domain/entities/class_entity.dart';
 
@@ -35,7 +36,12 @@ class ClassCard extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: onTap,
+          onTap: () {
+            // Store selected class in session BEFORE navigating
+            AppSession.instance.selectedClassId   = classItem.id;
+            AppSession.instance.selectedClassName = classItem.name;
+            onTap?.call();
+          },
           borderRadius: BorderRadius.circular(16.0),
           child: Padding(
             padding: const EdgeInsets.all(16.0),

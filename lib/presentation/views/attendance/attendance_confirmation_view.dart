@@ -126,11 +126,11 @@ class _AttendanceConfirmationViewState
                     ),
                     const SizedBox(height: 8.0),
 
-                    // Subtitle
-                    const Text(
-                      AppStrings.submissionTimestampText,
+                    // Subtitle — real timestamp
+                    Text(
+                      confirmation.submissionTimestamp,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 12.5,
                         fontWeight: FontWeight.w400,
                         color: Color(0xFF64748B),

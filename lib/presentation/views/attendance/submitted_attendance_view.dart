@@ -115,9 +115,9 @@ class _SubmittedAttendanceViewState extends State<SubmittedAttendanceView> {
                             const SizedBox(height: 10.0),
 
                             // Screen Title
-                            const Text(
-                              AppStrings.submittedAttendanceTitle,
-                              style: TextStyle(
+                            Text(
+                              _viewModel.sessionTitle,
+                              style: const TextStyle(
                                 fontSize: 22.0,
                                 fontWeight: FontWeight.w800,
                                 color: Color(0xFF0A1C30),
@@ -128,9 +128,9 @@ class _SubmittedAttendanceViewState extends State<SubmittedAttendanceView> {
                             const SizedBox(height: 6.0),
 
                             // Subtitle
-                            const Text(
-                              AppStrings.submittedSubtitle,
-                              style: TextStyle(
+                            Text(
+                              _viewModel.sessionSubtitle,
+                              style: const TextStyle(
                                 fontSize: 13.0,
                                 fontWeight: FontWeight.w400,
                                 color: Color(0xFF64748B),

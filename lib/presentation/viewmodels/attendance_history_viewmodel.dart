@@ -1,38 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:sky_attendance/domain/entities/attendance_history_item_entity.dart';
+import '../../data/repositories/attendance_repository.dart';
+import '../../data/models/attendance_session_model.dart';
+import '../../domain/entities/attendance_history_item_entity.dart';
 
 class AttendanceHistoryViewModel extends ChangeNotifier {
-  // Default tab is 0 (Classes / Home) as shown in the device screenshot
-  int _selectedNavIndex = 0;
+  final AttendanceRepository _repo = AttendanceRepository();
 
-  int get selectedNavIndex => _selectedNavIndex;
+  // ── Getters expected by AttendanceHistoryView ─────────────────────────────
+  String get courseTitle    => _courseTitle;
+  String get courseSubtitle => _courseSubtitle;
 
-  final String courseTitle = 'Advanced Physics 401';
-  final String courseSubtitle = 'Fall Semester 2023 • Lecture Hall B';
+  /// historyItems — what the view iterates over
+  List<AttendanceHistoryItemEntity> get historyItems => _historyItems;
 
-  final List<AttendanceHistoryItemEntity> historyItems = const [
-    AttendanceHistoryItemEntity(
-      id: 'hist_1',
-      dateTitle: 'Mon, Oct 23',
-      timeAndType: '10:00 AM • Regular\nClass',
-      status: 'Submitted',
-    ),
-    AttendanceHistoryItemEntity(
-      id: 'hist_2',
-      dateTitle: 'Wed, Oct 18',
-      timeAndType: '10:00 AM • Regular\nClass',
-      status: 'Submitted',
-    ),
-    AttendanceHistoryItemEntity(
-      id: 'hist_3',
-      dateTitle: 'Mon, Oct 16',
-      timeAndType: '10:00 AM • Regular\nClass',
-      status: 'Submitted',
+  // ── Internal state ────────────────────────────────────────────────────────
+  String _courseTitle    = 'My Attendance Sessions';
+  String _courseSubtitle = 'All submitted sessions';
+
+  List<AttendanceHistoryItemEntity> _historyItems = [
+    const AttendanceHistoryItemEntity(
+      id:          '1',
+      dateTitle:   'Loading...',
+      timeAndType: '',
+      status:      'Submitted',
     ),
   ];
 
-  void selectTab(int index) {
-    _selectedNavIndex = index;
-    notifyListeners();
+  AttendanceHistoryViewModel() {
+    _loadHistory();
+  }
+
+  Future<void> _loadHistory() async {
+    try {
+      final sessions = await _repo.getHistory();
+      if (sessions.isNotEmpty) {
+        _courseTitle    = '${sessions.first.subject} — ${sessions.first.className}';
+        _courseSubtitle = 'Fall Semester ${sessions.first.date.year}';
+        _historyItems   = sessions.map(_toEntity).toList();
+        notifyListeners();
+      } else {
+        _historyItems = [];
+        notifyListeners();
+      }
+    } catch (_) {
+      // Keep default placeholders on network error
+    }
+  }
+
+  static AttendanceHistoryItemEntity _toEntity(AttendanceSessionModel s) {
+    const months = [
+      '', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+    ];
+    final dateTitle = '${months[s.date.month]} ${s.date.day}, ${s.date.year}';
+    final timeAndType =
+        '${s.subject} • ${s.presentCount}/${s.totalStudents} present';
+    return AttendanceHistoryItemEntity(
+      id:          s.sessionId,
+      dateTitle:   dateTitle,
+      timeAndType: timeAndType,
+      status:      'Submitted',
+    );
   }
 }

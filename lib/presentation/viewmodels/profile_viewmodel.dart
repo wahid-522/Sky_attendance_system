@@ -1,31 +1,94 @@
 import 'package:flutter/material.dart';
+import '../../data/repositories/auth_repository.dart';
+import '../../data/repositories/attendance_repository.dart';
 
 class ProfileViewModel extends ChangeNotifier {
-  final int selectedNavIndex = 3;
+  final AuthRepository       _authRepo       = AuthRepository();
+  final AttendanceRepository _attendanceRepo = AttendanceRepository();
 
-  final String teacherName = 'Prof. Sarah Jenkins';
-  final String teacherEmail = 'instructor@skyacademy.edu';
-  final String teacherRole = 'Senior Faculty Instructor';
-  final String department = 'Department of Mathematics & Physics';
-  final String employeeId = 'EMP-2026-401';
-  final String semester = 'Fall Semester 2026';
-  final String status = 'Online';
+  // ── Getters expected by ProfileView ──────────────────────────────────────
+  String get teacherName  => _teacherName;
+  String get teacherEmail => _teacherEmail;
+  String get teacherRole  => _teacherRole;
+  String get department   => _department;
+  String get employeeId   => _employeeId;
+  String get semester     => _semester;
 
-  final List<Map<String, String>> assignedClasses = const [
-    {
-      'name': 'Class 10-A',
-      'subject': 'Mathematics & Calculus',
-      'students': '32 Students',
-    },
-    {
-      'name': 'Class 12-B',
-      'subject': 'Advanced Physics 401',
-      'students': '28 Students',
-    },
-    {
-      'name': 'Class 9-C',
-      'subject': 'Algebra I & Geometry',
-      'students': '20 Students',
-    },
-  ];
+  /// assignedClasses — maps with 'name', 'subject', 'students' keys
+  List<Map<String, String>> get assignedClasses => _assignedClasses;
+
+  // ── Internal state ────────────────────────────────────────────────────────
+  String _teacherName  = 'Instructor';
+  String _teacherEmail = '';
+  String _teacherRole  = 'Instructor';
+  String _department   = '—';
+  String _employeeId   = '—';
+  String _semester     = 'Term 2026';
+
+  List<Map<String, String>> _assignedClasses = const [];
+
+  ProfileViewModel() {
+    _loadProfile();
+  }
+
+  Future<void> _loadProfile() async {
+    try {
+      final instructor = await _authRepo.getProfile();
+
+      _teacherName  = instructor.name;
+      _teacherEmail = instructor.email;
+      _teacherRole  = instructor.qualification.isNotEmpty
+          ? instructor.qualification
+          : 'Instructor';
+      _department   = instructor.subjects.isNotEmpty
+          ? instructor.subjects.join(', ')
+          : '—';
+      _employeeId   = instructor.id;
+      _semester     = 'Term ${DateTime.now().year}';
+
+      // Build assignedClasses with real student counts + subjects per class
+      if (instructor.classes.isNotEmpty) {
+        final classData = await Future.wait(
+          instructor.classes.map((cls) async {
+            try {
+              // Get subjects for this class from timetable
+              final subjectModels =
+                  await _attendanceRepo.getSubjectsForClass(cls);
+              final subjectNames = subjectModels.isNotEmpty
+                  ? subjectModels.map((s) => s.name).join(', ')
+                  : instructor.subjects.isNotEmpty
+                      ? instructor.subjects.join(', ')
+                      : '—';
+
+              // Student count from subjects (enrolledCount from first subject)
+              final studentCount = subjectModels.isNotEmpty
+                  ? subjectModels.first.enrolledCount
+                  : 0;
+
+              return {
+                'name':     cls,
+                'subject':  subjectNames,
+                'students': '$studentCount students',
+              };
+            } catch (_) {
+              return {
+                'name':     cls,
+                'subject':  instructor.subjects.join(', '),
+                'students': '—',
+              };
+            }
+          }),
+        );
+        _assignedClasses = classData;
+      } else {
+        _assignedClasses = const [
+          {'name': 'No classes assigned', 'subject': '—', 'students': '—'},
+        ];
+      }
+
+      notifyListeners();
+    } catch (_) {
+      // Keep defaults on error
+    }
+  }
 }

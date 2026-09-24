@@ -127,19 +127,19 @@ class _HomeViewState extends State<HomeView> {
                                   Row(
                                     children: [
                                       _buildHeroMetric(
-                                        '3',
+                                        '${_viewModel.totalClasses}',
                                         'Classes',
                                         Icons.school_rounded,
                                       ),
                                       _buildMetricDivider(),
                                       _buildHeroMetric(
-                                        '90',
+                                        '${_viewModel.totalStudents}',
                                         'Students',
                                         Icons.groups_rounded,
                                       ),
                                       _buildMetricDivider(),
                                       _buildHeroMetric(
-                                        '96.4%',
+                                        _viewModel.attendanceRate,
                                         'Attendance',
                                         Icons.trending_up_rounded,
                                       ),

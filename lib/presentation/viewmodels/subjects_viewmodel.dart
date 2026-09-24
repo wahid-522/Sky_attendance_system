@@ -1,41 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:sky_attendance/domain/entities/subject_entity.dart';
+import '../../core/session/app_session.dart';
+import '../../data/repositories/attendance_repository.dart';
+import '../../domain/entities/subject_entity.dart';
 
 class SubjectsViewModel extends ChangeNotifier {
-  // Active tab 0 (Classes)
-  int _selectedNavIndex = 0;
+  final AttendanceRepository _repo = AttendanceRepository();
 
-  int get selectedNavIndex => _selectedNavIndex;
+  List<SubjectEntity> get subjects => _subjects;
 
-  final List<SubjectEntity> subjects = const [
-    SubjectEntity(
-      id: 'sub_1',
-      name: 'Mathematics',
-      description: 'Advanced Algebra & Calculus',
-      category: 'Core',
-      enrolledCount: 32,
-      symbolType: 'math',
-    ),
-    SubjectEntity(
-      id: 'sub_2',
-      name: 'Physics',
-      description: 'Mechanics & Thermodynamics',
-      category: 'Core',
-      enrolledCount: 32,
-      symbolType: 'physics',
-    ),
-    SubjectEntity(
-      id: 'sub_3',
-      name: 'English Literature',
-      description: 'Modern Prose & Poetry',
-      category: 'Language',
-      enrolledCount: 32,
-      symbolType: 'literature',
-    ),
-  ];
+  // Start empty — real data comes from API
+  List<SubjectEntity> _subjects = const [];
 
-  void selectTab(int index) {
-    _selectedNavIndex = index;
-    notifyListeners();
+  String get pageTitle => _pageTitle;
+  String _pageTitle = 'Subjects';
+
+  SubjectsViewModel() {
+    final classId = AppSession.instance.selectedClassId;
+    if (classId.isNotEmpty) {
+      _pageTitle = 'Class ${AppSession.instance.selectedClassName.replaceFirst("Class ", "")} - Subjects';
+      _loadSubjects(classId);
+    }
+  }
+
+  Future<void> _loadSubjects(String classId) async {
+    try {
+      final models = await _repo.getSubjectsForClass(classId);
+      if (models.isNotEmpty) {
+        _subjects = models.map((m) => SubjectEntity(
+              id:            m.id.isNotEmpty ? m.id : m.name,
+              name:          m.name,
+              description:   m.days.isNotEmpty ? m.days.join(', ') : 'No schedule set',
+              category:      'Core',
+              enrolledCount: m.enrolledCount,
+              symbolType:    _symbolFor(m.name),
+            )).toList();
+        notifyListeners();
+      } else {
+        _subjects = [];
+        notifyListeners();
+      }
+    } catch (_) {
+      // Keep placeholder on error
+    }
+  }
+
+  Future<void> loadSubjects(String classId) => _loadSubjects(classId);
+
+  static String _symbolFor(String name) {
+    final lower = name.toLowerCase();
+    if (lower.contains('math'))    return 'math';
+    if (lower.contains('physics')) return 'physics';
+    if (lower.contains('english') ||
+        lower.contains('urdu')    ||
+        lower.contains('literature')) return 'literature';
+    return 'math';
   }
 }

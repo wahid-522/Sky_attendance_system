@@ -145,38 +145,38 @@ class _AttendanceViewState extends State<AttendanceView> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      const Expanded(
+                                      Expanded(
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              AppStrings.classMathematicsTitle,
+                                              _viewModel.sessionTitle,
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 fontSize: 18.0,
                                                 fontWeight: FontWeight.w800,
                                                 color: Color(0xFF0F172A),
                                                 letterSpacing: -0.3,
                                               ),
                                             ),
-                                            SizedBox(height: 3.0),
+                                            const SizedBox(height: 3.0),
                                             Row(
                                               children: [
-                                                Icon(
+                                                const Icon(
                                                   Icons.calendar_today_rounded,
                                                   size: 12.0,
                                                   color: Color(0xFF64748B),
                                                 ),
-                                                SizedBox(width: 5.0),
+                                                const SizedBox(width: 5.0),
                                                 Flexible(
                                                   child: Text(
-                                                    AppStrings.sessionDate,
+                                                    _viewModel.sessionDate,
                                                     maxLines: 1,
                                                     overflow:
                                                         TextOverflow.ellipsis,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       fontSize: 12.0,
                                                       fontWeight:
                                                           FontWeight.w500,
@@ -394,7 +394,7 @@ class _AttendanceViewState extends State<AttendanceView> {
                               width: double.infinity,
                               height: 48.0,
                               child: ElevatedButton(
-                                onPressed: _viewModel.isSubmitting
+                                onPressed: _viewModel.isSubmitting || !_viewModel.isReady
                                     ? null
                                     : _onSubmitPressed,
                                 style: ElevatedButton.styleFrom(

@@ -1,36 +1,75 @@
 import 'package:flutter/material.dart';
-import 'package:sky_attendance/domain/entities/class_entity.dart';
+import '../../core/session/app_session.dart';
+import '../../data/repositories/attendance_repository.dart';
+import '../../domain/entities/class_entity.dart';
 
 class HomeViewModel extends ChangeNotifier {
-  int _selectedNavIndex = 0;
-  final bool _isOnline = true;
+  final AttendanceRepository _repo = AttendanceRepository();
 
-  int get selectedNavIndex => _selectedNavIndex;
-  bool get isOnline => _isOnline;
+  bool              get isOnline => true;
+  List<ClassEntity> get classes  => _classes;
 
-  final List<ClassEntity> classes = const [
-    ClassEntity(
-      id: '1',
-      name: 'Class 10-A',
-      subject: 'Mathematics',
-      studentCount: 32,
-    ),
-    ClassEntity(
-      id: '2',
-      name: 'Class 12-B',
-      subject: 'Advanced Calculus',
-      studentCount: 28,
-    ),
-    ClassEntity(
-      id: '3',
-      name: 'Class 9-C',
-      subject: 'Algebra I',
-      studentCount: 30,
-    ),
-  ];
+  // ── Real stats (populated from API) ─────────────────────────────────────
+  // NOTE: HomeView currently hardcodes '3', '90', '96.4%' as literal strings.
+  // These getters are ready for when the view is updated to read from viewmodel.
+  int    get totalClasses   => _classes.length;
+  int    get totalStudents  => _classes.fold(0, (sum, c) => sum + c.studentCount);
+  String get attendanceRate => _attendanceRate;
 
-  void selectTab(int index) {
-    _selectedNavIndex = index;
-    notifyListeners();
+  String _attendanceRate = '0.0%';
+
+  List<ClassEntity> _classes = const [];
+
+  HomeViewModel() {
+    _loadClasses();
   }
+
+  Future<void> _loadClasses() async {
+    try {
+      final models = await _repo.getMyClasses();
+      _classes = models.map((m) => ClassEntity(
+            id:           m.classId,
+            name:         'Class ${m.className}',
+            subject:      m.subjects.isNotEmpty ? m.subjects.join(', ') : '—',
+            studentCount: m.studentCount,
+          )).toList();
+
+      if (_classes.isNotEmpty) {
+        AppSession.instance.selectedClassId   = _classes.first.id;
+        AppSession.instance.selectedClassName = _classes.first.name;
+
+        // Calculate real attendance rate from history
+        _calculateAttendanceRate();
+      }
+
+      notifyListeners();
+    } catch (_) {
+      notifyListeners();
+    }
+  }
+
+  Future<void> _calculateAttendanceRate() async {
+    try {
+      final history = await _repo.getHistory();
+      if (history.isEmpty) {
+        _attendanceRate = '0.0%';
+        notifyListeners();
+        return;
+      }
+      final totalPresent = history.fold(0, (s, h) => s + h.presentCount);
+      final totalAll     = history.fold(0, (s, h) => s + h.totalStudents);
+      if (totalAll > 0) {
+        final rate = (totalPresent / totalAll * 100).toStringAsFixed(1);
+        _attendanceRate = '$rate%';
+        notifyListeners();
+      }
+    } catch (_) {}
+  }
+
+  void selectClass(ClassEntity c) {
+    AppSession.instance.selectedClassId   = c.id;
+    AppSession.instance.selectedClassName = c.name;
+  }
+
+  void refresh() => _loadClasses();
 }

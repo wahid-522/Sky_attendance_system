@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../data/repositories/attendance_repository.dart';
-import '../../data/models/attendance_session_model.dart';
 import '../../domain/entities/attendance_record_entity.dart';
 
 class SubmittedAttendanceViewModel extends ChangeNotifier {

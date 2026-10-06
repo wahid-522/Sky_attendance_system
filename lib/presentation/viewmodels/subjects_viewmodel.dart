@@ -48,11 +48,17 @@ class SubjectsViewModel extends ChangeNotifier {
 
   static String _symbolFor(String name) {
     final lower = name.toLowerCase();
-    if (lower.contains('math'))    return 'math';
-    if (lower.contains('physics')) return 'physics';
+    if (lower.contains('math')) {
+      return 'math';
+    }
+    if (lower.contains('physics')) {
+      return 'physics';
+    }
     if (lower.contains('english') ||
-        lower.contains('urdu')    ||
-        lower.contains('literature')) return 'literature';
+        lower.contains('urdu') ||
+        lower.contains('literature')) {
+      return 'literature';
+    }
     return 'math';
   }
 }
